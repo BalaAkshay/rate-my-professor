@@ -1,0 +1,30 @@
+<?php session_start();
+if (!isset($_SESSION['user'])) header('Location: login.html');
+?>
+<!DOCTYPE html>
+<html><head><title>Submit Rating</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+  <div class="container4">
+    <h2>Submit Rating</h2>
+    <p>User: <?php echo htmlspecialchars($_SESSION['user']); ?> | <a href="logout.php">Logout</a></p>
+    <form action="submit.php" method="post" onsubmit="return validateRate()">
+      <select id="prof" name="prof">
+        <option value="">Select Professor</option>
+        <option>Geoffrey Hinton</option>
+        <option>Yoshua Bengio</option>
+        <option>Yaan LeCun</option>
+        <option>Andrew Ng</option>
+        <option>Andrej Karpathy</option>
+        <option>Fei Fei Lee</option>
+        <option></option>
+      </select>
+      <select id="rating" name="rating">
+        <option value="">Rating</option>
+        <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+      </select>
+      <textarea name="comment" placeholder="Comments (optional) (What course you have taken? How was your experience? And suggestions!!! )"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <script src="js/validate.js"></script>
+</body></html>
