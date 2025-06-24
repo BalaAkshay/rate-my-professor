@@ -1,6 +1,6 @@
 <?php session_start();
-if (!isset($_SESSION['user'])) header('Location: login.html');
-$conn = new mysqli('localhost','root','Moshniag!@#456','rmp');
+if (!isset($_SESSION['username'])) header('Location: login.html');
+$conn = new mysqli('localhost','root','password','rmp');
 $res = $conn->query("SELECT prof_name, rating, comment, submitted_at FROM ratings ORDER BY submitted_at DESC");
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ $res = $conn->query("SELECT prof_name, rating, comment, submitted_at FROM rating
 <body>
   <div class="container2">
   <h2>All Ratings</h2>
-  <p>User: <?php echo htmlspecialchars($_SESSION['user']); ?> | <a href="logout.php">Logout</a></p>
+  <p>User: <?php echo htmlspecialchars($_SESSION['username']); ?> | <a href="logout.php">Logout</a></p>
   <table>
     <tr>
       <th>Prof</th>

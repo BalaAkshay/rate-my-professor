@@ -1,12 +1,12 @@
 <?php session_start();
-if (!isset($_SESSION['user'])) header('Location: login.html');
+if (!isset($_SESSION['username'])) header('Location: login.html');
 ?>
 <!DOCTYPE html>
 <html><head><title>Submit Rating</title><link rel="stylesheet" href="css/style.css"></head>
 <body>
   <div class="container4">
     <h2>Submit Rating</h2>
-    <p>User: <?php echo htmlspecialchars($_SESSION['user']); ?> | <a href="logout.php">Logout</a></p>
+    <p>User: <?php echo htmlspecialchars($_SESSION['username']); ?> | <a href="logout.php">Logout</a></p>
     <form action="submit.php" method="post" onsubmit="return validateRate()">
       <select id="prof" name="prof">
         <option value="">Select Professor</option>
@@ -28,3 +28,4 @@ if (!isset($_SESSION['user'])) header('Location: login.html');
   </div>
   <script src="js/validate.js"></script>
 </body></html>
+

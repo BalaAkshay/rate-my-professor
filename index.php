@@ -6,13 +6,13 @@
 <body>
   <div class="container">
     <h2>Rate My Professor</h2>
-    <p><a href="login.html">Login</a> to give rating.</p>
+    <p><a href="login.html">Login</a> or <a href="register.html">Register</a> to give rating.</p>
   </div>
 </body>
 </html>
 
 <?php
-$conn = new mysqli('localhost', 'root', 'Moshniag!@#456', 'rmp');
+$conn = new mysqli('localhost', 'root', 'password', 'rmp');
 if ($conn->connect_error) {
     die("DB error: " . $conn->connect_error);
 }
@@ -46,4 +46,3 @@ if ($res->num_rows > 0) {
 
 $conn->close();
 ?>
-

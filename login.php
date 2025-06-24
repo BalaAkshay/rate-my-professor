@@ -1,14 +1,28 @@
-<?php session_start();
-$conn = new mysqli('localhost','root','Moshniag!@#456','rmp');
-if ($conn->connect_error) die('DB error');
-$u = $_POST['username']; $p = hash('sha256', $_POST['password']);
-$stmt = $conn->prepare("SELECT * FROM users WHERE username=? AND password=?");
-$stmt->bind_param('ss',$u,$p); $stmt->execute();
-$res = $stmt->get_result();
-if ($res->num_rows===1) {
-  $_SESSION['user'] = $u;
-  header('Location: rate.html'); exit;
-} else {
-  echo "<p class='container error'>Login failed. <a href='login.html'>Try again</a></p>";
+<?php
+session_start();
+
+$conn = new mysqli('localhost', 'root', 'password', 'rmp');
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $conn->real_escape_string($_POST['username']);
+    $password = $_POST['password'];
+    $sql = "SELECT id, username, password FROM users WHERE username = '$username'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
+        if (password_verify($password, $row['password'])) {
+            $_SESSION['username'] = $username;
+            header("Location: rate.html?success=Login successful!");
+            exit();
+        }
+    }
+    header("Location: login.html?error=Invalid username or password");
+    exit();
+}
+
+$conn->close();
 ?>
