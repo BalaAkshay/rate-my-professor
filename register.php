@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$conn = new mysqli('localhost', 'root', 'Moshniag!@#456', 'rmp');
+$conn = new mysqli('localhost', 'root', 'password', 'rmp');
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
